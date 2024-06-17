@@ -1,1 +1,1 @@
-export const DB_NAME = "ProgClubDB"
+export const DB_NAME = "Videotube"

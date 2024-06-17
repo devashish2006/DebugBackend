@@ -16,4 +16,3 @@ const connectDB = async () => {
 
 export default connectDB
 
-// please control i m seeing the changesthat you are doing...?
