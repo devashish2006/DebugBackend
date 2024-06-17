@@ -57,7 +57,7 @@ const userSchema = new Schema(
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")) return next();
 
-    this.password=bcrypt.hash(this.password, 10) //10 is the no. of rounds of salting .. hasing
+    this.password = await bcrypt.hash(this.password, 10) //10 is the no. of rounds of salting .. hasing
     next()
 })
 
@@ -91,7 +91,9 @@ userSchema.pre("save", async function(next){
           expiresIn: process.env.REFRESH_TOKEN_EXPIRY
         }
     )
+
+    
  }
 
 
-export const user = mongoose.model("User",userSchema)
+export const User = mongoose.model("User",userSchema)
