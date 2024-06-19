@@ -1,12 +1,11 @@
 import jwt from "jsonwebtoken";
-import User from "../models/user.model.js"
+import { User } from "../models/user.model.js"
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiErrors.js";
 
 export const varifyJWT = asyncHandler(async(req, res, next) => {
     try {
-        const token = req.cookies?.accessToken || req.
-        handler("Authorization")?.replace("Bearer ","")//for mobiles
+        const token = req.cookies?.accesstoken || req.headers.authorization?.replace("Bearer ","")//for mobiles
 
         if(!token) {
             throw new ApiError(401, "Unauthorized request")
@@ -24,6 +23,9 @@ export const varifyJWT = asyncHandler(async(req, res, next) => {
         req.user = user //gived acces to logout method of user
         next()
     } catch (error) {
+        console.log(error)
         throw new ApiError(401, error?.message || "Invalid Access Token")
     }
 })
+
+

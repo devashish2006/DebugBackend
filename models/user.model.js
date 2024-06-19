@@ -1,5 +1,5 @@
 import mongoose, {Schema} from "mongoose";
-import  jwt  from "jsonwebtoken";
+import jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt" //for pass hashing and auth
 
 const userSchema = new Schema(
@@ -66,7 +66,7 @@ userSchema.pre("save", async function(next){
     return await bcrypt.compare(password, this.password)
  }
 
- userSchema.methods.generateAccesstoken = function(){
+ userSchema.methods.generateAccessToken = function(){
     return jwt.sign(
         {
             _id: this.id,
@@ -81,7 +81,7 @@ userSchema.pre("save", async function(next){
     )
  }
 
- userSchema.methods.generateRefreshtoken = function(){
+ userSchema.methods.generateRefreshToken = function(){
     return jwt.sign(
         {
             _id: this.id,
@@ -97,3 +97,4 @@ userSchema.pre("save", async function(next){
 
 
 export const User = mongoose.model("User",userSchema)
+
