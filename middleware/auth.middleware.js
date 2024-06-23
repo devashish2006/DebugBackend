@@ -3,7 +3,7 @@ import { User } from "../models/user.model.js"
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiErrors.js";
 
-export const varifyJWT = asyncHandler(async(req, res, next) => {
+export const verifyJWT = asyncHandler(async(req, res, next) => {
     try {
         const token = req.cookies?.accesstoken || req.headers.authorization?.replace("Bearer ","")//for mobiles
 
@@ -28,4 +28,4 @@ export const varifyJWT = asyncHandler(async(req, res, next) => {
     }
 })
 
-
+export  default { verifyJWT }
