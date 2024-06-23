@@ -26,9 +26,9 @@ app.use("/api/v1/users",userRouter)
 
 //https://localhost:8080/api/v1/users/register
 
-app.listen(8080, () => {
-    console.log("listening to port 8080.")
-})
-export { app }
+// app.listen(8080, () => {
+//     console.log("listening to port 8080.")
+// })
+export { app }  
 
 
