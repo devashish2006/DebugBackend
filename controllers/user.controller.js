@@ -1,5 +1,3 @@
-
-
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiErrors.js";
 import { User } from "../models/user.model.js";
@@ -9,7 +7,7 @@ import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
 
 const generateAccessAndRefreshTokens = async(userId) => 
-    {
+    {   
         try {
             const user = await User.findById(userId)
             const accessToken = user.generateAccessToken()
@@ -134,8 +132,8 @@ const loginUser = asyncHandler(async (req, res) => {
         await User.findByIdAndUpdate(
             req.user._id,
             {
-                $set: {
-                    refreshToken: undefined
+                $unset: {
+                    refreshToken: 1 //removes the field from document
                 }
             },
                 
